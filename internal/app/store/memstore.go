@@ -1,6 +1,8 @@
 package store
 
 import (
+	"fmt"
+
 	"github.com/freepaddler/yap-shortener/internal/app/shortener"
 )
 
@@ -15,13 +17,17 @@ func NewMemStore() *MemStore {
 }
 
 func (s *MemStore) Put(url string) []byte {
+	fmt.Println("MemStore PUT:", url)
 	h := shorter.Short(8)
 	s.repo[h] = url
+	fmt.Println("MemStore PUT:", h)
 	return []byte(h)
 }
 
 func (s *MemStore) Get(short string) (string, bool) {
+	fmt.Println("MemStore GET:", short)
 	if v, ok := s.repo[short]; ok {
+		fmt.Println("MemStore GET:", v)
 		return v, true
 	}
 	return "", false

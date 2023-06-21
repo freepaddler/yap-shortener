@@ -20,6 +20,7 @@ func NewHTTPHandler(s app.Storage) *HTTPHandler {
 }
 
 func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Put Handler:", r.URL)
 	ct := r.Header.Get("Content-Type")
 	if !strings.Contains(ct, "text/plain") {
 		w.WriteHeader(http.StatusBadRequest)
@@ -40,12 +41,14 @@ func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *HTTPHandler) Get(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Get Handler:", r.URL)
 	id := chi.URLParam(r, "id")
 	u, ok := h.s.Get(id)
 	if !ok {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	fmt.Println("Get Handler return:", u)
 	w.Header().Add("Location", u)
 	w.WriteHeader(http.StatusTemporaryRedirect)
 
