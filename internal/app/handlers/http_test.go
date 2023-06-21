@@ -17,7 +17,7 @@ import (
 
 func TestHTTPHandler_Put(t *testing.T) {
 	s := store.NewMemStore()
-	h := NewHTTPHandler(s)
+	h := NewHTTPHandler(s, "baseUrl")
 
 	tests := []struct {
 		name     string
@@ -71,7 +71,7 @@ func TestHTTPHandler_Put(t *testing.T) {
 
 func TestHTTPHandler_Get(t *testing.T) {
 	s := store.NewMemStore()
-	h := NewHTTPHandler(s)
+	h := NewHTTPHandler(s, "baseUrl")
 	storedURL := "http://qwe.asd/zxc"
 	storedShort := s.Put(storedURL)
 	fakeShort := "XXXXxxxx"

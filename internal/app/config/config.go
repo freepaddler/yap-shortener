@@ -21,7 +21,7 @@ type Config struct {
 }
 
 func NewConfig() *Config {
-	c := &Config{}
+	var c Config
 	var output io.Writer = os.Stderr
 	flag.CommandLine.SetOutput(output)
 	// sorting is based on long args, doesn't look too good
@@ -39,7 +39,7 @@ func NewConfig() *Config {
 	)
 	flag.StringVarP(
 		&c.ServerURL,
-		"serverAddress",
+		"ServerURL",
 		"b",
 		defaultServerURL,
 		"server `URL`",
@@ -52,5 +52,5 @@ func NewConfig() *Config {
 		fmt.Println("Error while parsing ENV", err)
 	}
 
-	return c
+	return &c
 }
