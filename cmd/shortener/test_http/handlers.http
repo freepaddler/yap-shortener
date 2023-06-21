@@ -1,0 +1,8 @@
+# curl -X POST -i http://localhost:8080 -H "Content-Type: text/plain" -d "http://ya.ru"
+POST http://localhost:8080
+Content-Type: text/plain
+
+http://ya.ru
+
+###
+
