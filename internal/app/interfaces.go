@@ -1,6 +1,6 @@
 package app
 
 type Storage interface {
-	Put(string) []byte
+	Put(string) string
 	Get(string) (string, bool)
 }

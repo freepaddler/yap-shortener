@@ -34,10 +34,11 @@ func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	hash := h.s.Put("http://localhost:8080/" + string(rBody))
+	hash := h.s.Put(string(rBody))
+	hash = "http://localhost:8080/" + hash
 	w.Header().Add("Content-Type", "text/plain")
 	w.WriteHeader(http.StatusCreated)
-	w.Write(hash)
+	w.Write([]byte(hash))
 }
 
 func (h *HTTPHandler) Get(w http.ResponseWriter, r *http.Request) {

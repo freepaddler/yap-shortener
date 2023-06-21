@@ -16,12 +16,12 @@ func NewMemStore() *MemStore {
 	}
 }
 
-func (s *MemStore) Put(url string) []byte {
+func (s *MemStore) Put(url string) string {
 	fmt.Println("MemStore PUT:", url)
 	h := shorter.Short(8)
 	s.repo[h] = url
 	fmt.Println("MemStore PUT:", h)
-	return []byte(h)
+	return h
 }
 
 func (s *MemStore) Get(short string) (string, bool) {
