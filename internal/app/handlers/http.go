@@ -34,7 +34,7 @@ func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	hash := h.s.Put(string(rBody))
+	hash := h.s.Put("http://localhost:8080/" + string(rBody))
 	w.Header().Add("Content-Type", "text/plain")
 	w.WriteHeader(http.StatusCreated)
 	w.Write(hash)
@@ -52,9 +52,4 @@ func (h *HTTPHandler) Get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Location", u)
 	w.WriteHeader(http.StatusTemporaryRedirect)
 
-}
-
-func (h *HTTPHandler) Test(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Test request:", r.Method, r.URL, r.Host, r.Header)
-	w.WriteHeader(http.StatusOK)
 }
