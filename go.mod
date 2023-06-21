@@ -3,7 +3,9 @@ module github.com/freepaddler/yap-shortener
 go 1.20
 
 require (
+	github.com/caarlos0/env/v8 v8.0.0
 	github.com/go-chi/chi v1.5.4
+	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.8.4
 )
 

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/freepaddler/yap-shortener/internal/app/config"
 	"github.com/freepaddler/yap-shortener/internal/app/handlers"
 	"github.com/freepaddler/yap-shortener/internal/app/router"
 	"github.com/freepaddler/yap-shortener/internal/app/store"
@@ -11,11 +12,12 @@ import (
 
 func main() {
 	fmt.Println("Starting server...")
+	conf := config.NewConfig()
 	s := store.NewMemStore()
-	h := handlers.NewHTTPHandler(s)
+	h := handlers.NewHTTPHandler(s, conf.ServerURL)
 	r := router.NewHTTPRouter(h)
 
-	if err := http.ListenAndServe("localhost:8080", r); err != nil {
+	if err := http.ListenAndServe(conf.ServerAddress, r); err != nil {
 		panic(err)
 	}
 

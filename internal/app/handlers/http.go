@@ -13,10 +13,11 @@ import (
 
 type HTTPHandler struct {
 	s app.Storage
+	b string
 }
 
-func NewHTTPHandler(s app.Storage) *HTTPHandler {
-	return &HTTPHandler{s: s}
+func NewHTTPHandler(s app.Storage, b string) *HTTPHandler {
+	return &HTTPHandler{s: s, b: b}
 }
 
 func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +41,7 @@ func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	hash := h.s.Put(string(rBody))
-	hash = "http://localhost:8080/" + hash
+	hash = h.b + "/" + hash
 	w.Header().Add("Content-Type", "text/plain")
 	w.WriteHeader(http.StatusCreated)
 	w.Write([]byte(hash))
