@@ -9,6 +9,7 @@ import (
 func NewHTTPRouter(h *handlers.HTTPHandler) *chi.Mux {
 	r := chi.NewRouter()
 	r.Post("/", h.Put)
+	r.Get("/", h.Test)
 	r.Get("/{id}", h.Get)
 	return r
 }

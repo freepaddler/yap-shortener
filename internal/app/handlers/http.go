@@ -53,3 +53,8 @@ func (h *HTTPHandler) Get(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusTemporaryRedirect)
 
 }
+
+func (h *HTTPHandler) Test(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Test request:", r.Method, r.URL, r.Host, r.Header)
+	w.WriteHeader(http.StatusOK)
+}
