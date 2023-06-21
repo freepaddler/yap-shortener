@@ -34,6 +34,11 @@ func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	if len(rBody) < 1 {
+		fmt.Println("Empty body")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 	hash := h.s.Put(string(rBody))
 	hash = "http://localhost:8080/" + hash
 	w.Header().Add("Content-Type", "text/plain")
