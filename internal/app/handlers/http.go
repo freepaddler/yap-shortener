@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 
 	"github.com/go-chi/chi"
 
@@ -20,7 +21,7 @@ func NewHTTPHandler(s app.Storage) *HTTPHandler {
 
 func (h *HTTPHandler) Put(w http.ResponseWriter, r *http.Request) {
 	ct := r.Header.Get("Content-Type")
-	if ct != "text/plain" {
+	if !strings.Contains(ct, "text/plain") {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}

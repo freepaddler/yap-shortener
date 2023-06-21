@@ -6,7 +6,7 @@ import (
 	"github.com/freepaddler/yap-shortener/internal/app/handlers"
 )
 
-func NewHttpRouter(h *handlers.HTTPHandler) *chi.Mux {
+func NewHTTPRouter(h *handlers.HTTPHandler) *chi.Mux {
 	r := chi.NewRouter()
 	r.Post("/", h.Put)
 	r.Get("/{id}", h.Get)

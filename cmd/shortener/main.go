@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("Starting server...")
 	s := store.NewMemStore()
 	h := handlers.NewHTTPHandler(s)
-	r := router.NewHttpRouter(h)
+	r := router.NewHTTPRouter(h)
 
 	if err := http.ListenAndServe("localhost:8080", r); err != nil {
 		panic(err)
