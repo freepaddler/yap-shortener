@@ -72,15 +72,15 @@ func TestHTTPHandler_Put(t *testing.T) {
 func TestHTTPHandler_Get(t *testing.T) {
 	s := store.NewMemStore()
 	h := NewHTTPHandler(s)
-	storedUrl := "http://qwe.asd/zxc"
-	storedShort := s.Put(storedUrl)
+	storedURL := "http://qwe.asd/zxc"
+	storedShort := s.Put(storedURL)
 	fakeShort := "XXXXxxxx"
 
 	tests := []struct {
 		name     string
 		reqShort string
 		wantCode int
-		wantUrl  string
+		wantURL  string
 	}{
 		{
 			name:     "Get failed",
@@ -91,7 +91,7 @@ func TestHTTPHandler_Get(t *testing.T) {
 			name:     "Get succeeded",
 			reqShort: storedShort,
 			wantCode: http.StatusTemporaryRedirect,
-			wantUrl:  storedUrl,
+			wantURL:  storedURL,
 		},
 	}
 	for _, tt := range tests {
@@ -107,7 +107,7 @@ func TestHTTPHandler_Get(t *testing.T) {
 
 			require.Equal(t, tt.wantCode, res.StatusCode)
 			if res.StatusCode == http.StatusTemporaryRedirect {
-				assert.Equal(t, res.Header.Get("Location"), tt.wantUrl)
+				assert.Equal(t, res.Header.Get("Location"), tt.wantURL)
 			}
 		})
 	}

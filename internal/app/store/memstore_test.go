@@ -17,18 +17,18 @@ func TestMemStore_Get_Empty(t *testing.T) {
 func TestMemStore_Get_NotFound(t *testing.T) {
 	sm := NewMemStore()
 	wantShort := "XXXXXXXX"
-	setUrl := "http://qwe.asd/zxc"
-	_ = sm.Put(setUrl)
+	setURL := "http://qwe.asd/zxc"
+	_ = sm.Put(setURL)
 	_, getOk := sm.Get(wantShort)
 	require.Equal(t, false, getOk)
 }
 
 func TestMemStore_Put_Get(t *testing.T) {
 	sm := NewMemStore()
-	setUrl := "http://qwe.asd/zxc"
-	getShort := sm.Put(setUrl)
+	setURL := "http://qwe.asd/zxc"
+	getShort := sm.Put(setURL)
 	require.NotEmpty(t, getShort)
-	getUrl, getOk := sm.Get(getShort)
+	getURL, getOk := sm.Get(getShort)
 	require.Equal(t, true, getOk)
-	assert.Equal(t, setUrl, getUrl)
+	assert.Equal(t, setURL, getURL)
 }
