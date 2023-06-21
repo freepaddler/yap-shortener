@@ -1,6 +1,13 @@
 package shorter
 
-import "math/rand"
+import (
+	"math/rand"
+	"time"
+)
+
+func init() {
+	rand.New(rand.NewSource(time.Now().UnixNano()))
+}
 
 const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
